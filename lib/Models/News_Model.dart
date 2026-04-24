@@ -11,6 +11,7 @@ class NewsModel {
     required this.newsUrl,
   });
 
+
   factory NewsModel.fromJson(jsonData) {
     return NewsModel(
       imageUrl:
