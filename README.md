@@ -37,8 +37,8 @@
 - 📰 **Multi-Category News** — General, Technology, Sports, Business, Entertainment
 - ⚡ **Fast Loading** — Cached images with `CachedNetworkImage` for smooth scrolling
 - 🌐 **In-App Reader** — Full articles open in integrated WebView without leaving the app
-- 🎨 **Category-Themed UI** — Each category has its own distinct AppBar color
-- 📱 **Responsive Design** — Sliver-based layouts with `CustomScrollView` for all screen sizes
+- 🎨 **Dynamic Category UI** — Single reusable category view with distinct AppBar colors per category
+- 📱 **Responsive Design** — Sliver-based layouts with `CustomScrollView` and `flutter_screenutil` for all screen sizes
 - 🛡️ **Error Resilience** — Graceful handling of missing images, empty responses, and network errors
 
 ---
@@ -48,7 +48,7 @@
 ### 📰 Core Features
 - **Breaking News Feed** — Top headlines from Egypt, Iran, Palestine, Israel, Saudi Arabia
 - **Category Browsing** — Horizontal scrollable category cards with image backgrounds
-- **Dedicated Category Views** — Separate screens for General, Tech, Sports, Business, Entertainment
+- **Dynamic Category Views** — Single reusable `NewsCategoryView` driven by `CategoryModel` data
 - **Article Previews** — Headline, description, and thumbnail in elegant card layout
 - **Full Article WebView** — Read complete articles in-app with `webview_flutter`
 - **Smart Image Handling** — Placeholder loaders, error fallbacks, and smooth caching
@@ -59,8 +59,9 @@
 - **Image Caching** — `CachedNetworkImage` for optimal performance and offline image viewing
 - **Sliver Architecture** — `CustomScrollView` with `SliverList`, `SliverToBoxAdapter` for smooth scrolling
 - **WebView Integration** — Full browser experience within the app
+- **Responsive Scaling** — `flutter_screenutil` for pixel-perfect UI across devices
 - **Defensive Parsing** — Null-safe JSON parsing with fallback values
-- **Responsive Cards** — `FittedBox` and `Flexible` widgets for adaptive layouts
+- **Reusable Components** — Modular widgets for categories, news lists, and cards
 
 ---
 
@@ -91,16 +92,17 @@
 
 <div align="center">
 
-| Component         | Technology        | Purpose                        |
+| Component | Technology | Purpose |
 |:-----------------:|:----------------:|:------------------------------:|
-| **Framework**     | Flutter 3.x      | Cross-platform UI              |
-| **Language**      | Dart 3.x         | Core development               |
-| **HTTP Client**   | Dio ^5.x         | News API calls                 |
+| **Framework** | Flutter 3.x | Cross-platform UI |
+| **Language** | Dart 3.x | Core development |
+| **HTTP Client** | Dio ^5.x | News API calls |
 | **Image Caching** | cached_network_image ^3.x | Fast image loading & caching |
-| **WebView**       | webview_flutter ^4.x | In-app article reading     |
-| **State Mgmt**    | setState / FutureBuilder | UI state handling          |
-| **API**           | NewsData.io      | Real-time news data            |
-| **Design**        | Material 3       | Latest UI patterns             |
+| **WebView** | webview_flutter ^4.x | In-app article reading |
+| **Responsive UI** | flutter_screenutil ^5.x | Screen adaptation & scaling |
+| **State Mgmt** | setState / FutureBuilder | UI state handling |
+| **API** | NewsData.io | Real-time news data |
+| **Design** | Material 3 | Latest UI patterns |
 
 </div>
 
@@ -112,39 +114,33 @@
 
 ```
 lib/
-├── main.dart                          # App entry point
+├── main.dart                          # App entry point with ScreenUtilInit
 │
-├── Models/                            # 📊 Data Models
-│   ├── News_Model.dart                # News article data structure
-│   └── Category_Model.dart            # Category card data (image, name, page)
+├── helper/
+│   └── constants/
+│       └── strings.dart               # API base URL & API key constants
 │
-├── Services/                          # 🔌 API Service Layer
-│   └── News_Services.dart             # Dio calls to NewsData.io
+├── models/                            # 📊 Data Models
+│   ├── news_model.dart                # News article data structure
+│   └── category_model.dart            # Category configuration (image, name, filters)
 │
-├── Views/                             # 🎬 UI Screens
-│   ├── Main_View.dart                 # Home screen with categories + breaking news
-│   ├── General_News_View.dart         # General news category
-│   ├── Tech_News_View.dart            # Technology news category
-│   ├── Sport_News_View.dart           # Sports news category
-│   ├── Business_News_View.dart        # Business news category
-│   ├── Entertainment_News_View.dart   # Entertainment news category
-│   └── News_Web_View.dart             # WebView for full article reading
+├── services/                          # 🔌 API Service Layer
+│   └── news_services.dart             # Dio calls to NewsData.io
 │
-├── Widgets/                           # 🧩 Reusable UI Components
-│   ├── Categories_Builder_Widget.dart # Horizontal category cards list
-│   ├── Category_Card_Widget.dart      # Individual category card
-│   ├── Category_NewsList_Builder.dart # FutureBuilder for category news
-│   ├── News_List_Builder.dart         # FutureBuilder for top/breaking news
-│   ├── News_List_Widget.dart          # SliverList wrapper for news cards
-│   ├── News_Card_Widget.dart          # Individual news article card
-│   └── Title_Widget.dart              # "Breaking News" header
+├── views/                             # 🎬 UI Screens
+│   ├── main_view.dart                 # Home screen with categories + breaking news
+│   ├── news_category_view.dart        # Dynamic category news screen
+│   └── news_details_view.dart         # WebView for full article reading
 │
-└── assets/                            # 🖼️ Static Assets
-    ├── general.avif                   # General category background
-    ├── technology.jpeg                # Technology category background
-    ├── entertainment.avif/.webp       # Entertainment category background
-    ├── business.avif                  # Business category background
-    └── sports.avif                    # Sports category background
+└── widgets/                           # 🧩 Reusable UI Components
+    ├── categories_list_builder.dart   # Horizontal scrollable category cards
+    ├── category_card.dart             # Individual category card with image background
+    ├── breaking_news_list.dart        # Stateful breaking news FutureBuilder
+    ├── category_news_list.dart        # Stateful category news FutureBuilder
+    ├── news_list_builder.dart         # Generic FutureBuilder for news lists
+    ├── sliver_news_card.dart          # SliverList wrapper for news cards
+    ├── news_card.dart                 # Individual news article card
+    └── title_widget.dart              # "Breaking News 🔥" header
 ```
 
 ### 🔄 Data Flow
@@ -205,10 +201,10 @@ lib/
 ### NewsModel
 ```dart
 class NewsModel {
-  String? imageUrl;      // Article thumbnail URL (nullable)
-  String headLine;       // Article title
-  String? subHeadLine;   // Article description (nullable)
-  String newsUrl;        // Full article link
+  final String? imageUrl;      // Article thumbnail URL (nullable)
+  final String headLine;       // Article title
+  final String? subHeadLine;   // Article description (nullable)
+  final String newsUrl;        // Full article link
 
   NewsModel({
     required this.imageUrl,
@@ -229,14 +225,16 @@ class NewsModel {
 ### CategoryModel
 ```dart
 class CategoryModel {
-  String imagePath;      // Local asset path for category background
-  String categoryName;   // Display name (General, Technology, etc.)
-  Widget page;           // Target screen widget
+  final String imagePath;      // Local asset path for category background
+  final String pageName;       // Display name (General, Technology, etc.)
+  final String categories;     // API category filter string
+  final String country;        // Optional country filter query string
 
   CategoryModel({
     required this.imagePath,
-    required this.categoryName,
-    required this.page,
+    required this.pageName,
+    required this.categories,
+    this.country = "",
   });
 }
 ```
@@ -266,6 +264,7 @@ dependencies:
   dio: ^5.x.x                    # HTTP client for API calls
   cached_network_image: ^3.x.x   # Image caching and loading
   webview_flutter: ^4.x.x        # In-app browser for articles
+  flutter_screenutil: ^5.x.x     # Responsive UI scaling
 ```
 
 ```bash
@@ -278,11 +277,11 @@ flutter pub get
 
 ### 📋 Prerequisites
 
-| Requirement   | Version   | Purpose           |
+| Requirement | Version | Purpose |
 |:-------------:|:---------:|:-----------------:|
-| Flutter SDK   | >=3.0.0   | Framework         |
-| Dart SDK      | >=3.0.0   | Language          |
-| NewsData.io   | Free key  | News API          |
+| Flutter SDK | >=3.0.0 | Framework |
+| Dart SDK | >=3.0.0 | Language |
+| NewsData.io | Free key | News API |
 
 ### 💻 Installation
 
@@ -294,7 +293,7 @@ cd news_cloud
 # 2. Install dependencies
 flutter pub get
 
-# 3. Set your NewsData.io API key in lib/services/news_services.dart
+# 3. Set your NewsData.io API key in lib/helper/constants/strings.dart
 #    final String apiKey = "YOUR_API_KEY_HERE";
 
 # 4. Run the app
@@ -309,14 +308,14 @@ flutter build ios --release      # iOS
 
 ## ⚠️ Known Limitations
 
-| Issue                  | Details                              | Status             |
+| Issue | Details | Status |
 |:-----------------------|:-------------------------------------|:------------------:|
-| API key in source code | Hardcoded in News_Services.dart      | 🔧 Planned fix     |
-| No offline mode        | Requires active internet connection  | 🔧 Planned         |
-| No bookmarks/saved     | Cannot save articles for later       | 🔧 Planned         |
-| No search              | Cannot search for specific topics    | 🔧 Planned         |
-| No push notifications  | No breaking news alerts              | 🔧 Planned         |
-| No dark mode           | Light theme only                     | 🔧 Planned         |
+| API key in source code | Hardcoded in strings.dart | 🔧 Planned fix |
+| No offline mode | Requires active internet connection | 🔧 Planned |
+| No bookmarks/saved | Cannot save articles for later | 🔧 Planned |
+| No search | Cannot search for specific topics | 🔧 Planned |
+| No push notifications | No breaking news alerts | 🔧 Planned |
+| No dark mode | Light theme only | 🔧 Planned |
 
 ---
 
