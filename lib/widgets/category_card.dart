@@ -8,18 +8,24 @@ class CategoryCard extends StatelessWidget {
 
   final CategoryModel categoryModel;
 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context){
-          return NewsCategoryView(model: categoryModel);
-        }));
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return NewsCategoryView(model: categoryModel);
+            },
+          ),
+        );
       },
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 6),
         child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.circular(25),
+          ),
           elevation: 10,
           child: Container(
             alignment: AlignmentGeometry.center,
@@ -31,7 +37,7 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
             height: 180.h,
-            width: 200.w,
+            width: 230.w,
             child: Text(
               categoryModel.pageName,
               style: TextStyle(
