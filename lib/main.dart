@@ -16,7 +16,10 @@ class NewsCloud extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       designSize: const Size(360, 690),
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: MainView()),
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        child: MaterialApp(debugShowCheckedModeBanner: false, home: MainView()),
+      ),
     );
   }
 }

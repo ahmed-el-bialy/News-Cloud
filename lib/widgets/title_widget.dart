@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TitleWidget extends StatelessWidget {
   const TitleWidget({super.key});
@@ -13,7 +14,7 @@ class TitleWidget extends StatelessWidget {
             "Breaking News 🔥",
             style: TextStyle(
               color: Colors.black,
-              fontSize: 35,
+              fontSize: 25.sp,
               fontWeight: FontWeight.bold,
             ),
           ),

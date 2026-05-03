@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/news_model.dart';
-import 'news_card_widget.dart';
+import 'news_card.dart';
 
-class NewsListWidget extends StatelessWidget {
-  const NewsListWidget({super.key, required this.newsList});
+class SliverNewsCard extends StatelessWidget {
+  const SliverNewsCard({super.key, required this.newsList});
 
   final List<NewsModel> newsList;
 
@@ -12,7 +12,7 @@ class NewsListWidget extends StatelessWidget {
     return SliverList(
         delegate: SliverChildBuilderDelegate(
               (context, index) {
-            return NewsCardWidget(newDetails: newsList[index],);
+            return NewsCard(newDetails: newsList[index],);
           },
           childCount: newsList.length,
         )

@@ -1,8 +1,8 @@
 class NewsModel {
-  String? imageUrl;
-  String headLine;
-  String? subHeadLine;
-  String newsUrl;
+  final String? imageUrl;
+  final String headLine;
+  final String? subHeadLine;
+  final String newsUrl;
 
   NewsModel({
     required this.imageUrl,
@@ -10,7 +10,6 @@ class NewsModel {
     required this.subHeadLine,
     required this.newsUrl,
   });
-
 
   factory NewsModel.fromJson(jsonData) {
     return NewsModel(

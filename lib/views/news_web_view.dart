@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsDetailsView extends StatefulWidget {
@@ -24,10 +25,10 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         title: RichText(
           text: TextSpan(
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
             children: [
               TextSpan(
                 text: "News",

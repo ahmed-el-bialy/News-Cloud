@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/news_model.dart';
 import '../views/news_web_view.dart';
 
-class NewsCardWidget extends StatelessWidget {
-  const NewsCardWidget({super.key, required this.newDetails});
+class NewsCard extends StatelessWidget {
+  const NewsCard({super.key, required this.newDetails});
 
   final NewsModel newDetails;
 
@@ -42,11 +42,13 @@ class NewsCardWidget extends StatelessWidget {
                             Center(child: CircularProgressIndicator()),
                         imageUrl: newDetails.imageUrl!,
                         fit: BoxFit.fill,
-                        errorWidget: (context, url, error) =>
-                            Center(child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.error_sharp,size: 50,),
-                            )),
+                        errorWidget: (context, url, error) => ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(20),
+                          child: Image.network(
+                            "https://imgs.search.brave.com/w4VZNFveOGMTnKbTH0xiATTbiTlgO13s89OLsLPLHE4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzE5LzU2LzM4LzYy/LzM2MF9GXzE5NTYz/ODYyMTlfbGpQSEZL/RUozSHNmY0pjVGJy/SDU4MWZianE3OUtB/akwuanBn",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -60,7 +62,10 @@ class NewsCardWidget extends StatelessWidget {
                   ),
                   child: Text(
                     newDetails.headLine,
-                    style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

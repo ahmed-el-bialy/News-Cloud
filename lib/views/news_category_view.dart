@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:news_cloud/models/category_model.dart';
 
-import '../widgets/category_news_list_builder.dart';
+import '../widgets/category_news_list.dart';
 
-class TechNewsView extends StatelessWidget {
-  const TechNewsView({super.key});
+class NewsCategoryView extends StatelessWidget {
+  const NewsCategoryView({super.key, required this.model});
+
+  final CategoryModel model;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white, size: 28),
-        backgroundColor: Color(0xFF311B92),
+        backgroundColor: Color(0xFF1976D2),
         title: Text(
-          "Technology News",
+          "${model.pageName} News",
           style: TextStyle(color: Colors.white, fontSize: 30),
         ),
         centerTitle: true,
@@ -21,8 +24,10 @@ class TechNewsView extends StatelessWidget {
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
-          CategoryNewsListBuilder(category: "technology")
-
+          CategoryNewsListBuilder(
+            category: (model.pageName).toLowerCase(),
+            country: model.country,
+          ),
         ],
       ),
     );

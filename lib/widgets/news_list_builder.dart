@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../models/news_model.dart';
-import '../services/news_services.dart';
-import 'news_list_widget.dart';
+import 'sliver_news_card.dart';
 
-class NewsListBuilder extends StatefulWidget {
-  const NewsListBuilder({super.key});
+class NewsListBuilder extends StatelessWidget {
+  const NewsListBuilder({super.key, required this.future});
 
-  @override
-  State<NewsListBuilder> createState() => _NewsListBuilderState();
-}
-
-class _NewsListBuilderState extends State<NewsListBuilder> {
-  late Future<List<NewsModel>> future;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      getNews();
-    });
-  }
-
-  void getNews() {
-    future = NewsServices().getTopNews();
-  }
+  final Future<List<NewsModel>> future;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +19,7 @@ class _NewsListBuilderState extends State<NewsListBuilder> {
               child: Center(child: Text('There is no news for now')),
             );
           }
-          return NewsListWidget(newsList: snapshot.data!);
+          return SliverNewsCard(newsList: snapshot.data!);
         } else if (snapshot.hasError) {
           return SliverToBoxAdapter(
             child: Center(child: Text('Error: ${snapshot.error}')),

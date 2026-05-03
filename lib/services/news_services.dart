@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
+import '../helper/constants/strings.dart';
 import '../models/news_model.dart';
 
 class NewsServices {
   final Dio dio = Dio();
-  final String baseUrl = "https://newsdata.io/api/1";
-  final String apiKey = "pub_a88236a36d3f44aabba52075fa0a7602&";
 
   Future<List<NewsModel>> getTopNews() async {
     try {

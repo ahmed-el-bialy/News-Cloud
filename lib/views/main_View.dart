@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/categories_builder_widget.dart';
-import '../widgets/news_list_builder.dart';
+import '../widgets/categories_list_builder.dart';
+import '../widgets/breaking_news_list.dart';
 import '../widgets/title_widget.dart';
 
 class MainView extends StatelessWidget {
@@ -35,9 +35,9 @@ class MainView extends StatelessWidget {
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            CategoriesBuilderWidget(),
+            CategoriesListBuilder(),
             TitleWidget(),
-            NewsListBuilder(),
+            BreakingNewsList(),
           ],
         ),
       ),
