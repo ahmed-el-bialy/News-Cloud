@@ -294,7 +294,7 @@ cd news_cloud
 # 2. Install dependencies
 flutter pub get
 
-# 3. Set your NewsData.io API key in lib/Services/News_Services.dart
+# 3. Set your NewsData.io API key in lib/services/news_services.dart
 #    final String apiKey = "YOUR_API_KEY_HERE";
 
 # 4. Run the app

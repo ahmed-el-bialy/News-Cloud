@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Views/Main_View.dart';
+import 'views/main_View.dart';
 
-
-void main(){
+void main() {
   runApp(NewsCloud());
 }
-
 
 class NewsCloud extends StatelessWidget {
   const NewsCloud({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainView(),
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      designSize: const Size(360, 690),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: MainView()),
     );
   }
 }

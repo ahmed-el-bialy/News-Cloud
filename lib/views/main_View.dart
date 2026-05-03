@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../Widgets/Categories_Builder_Widget.dart';
-import '../Widgets/News_List_Builder.dart';
-import '../Widgets/Title_Widget.dart';
+import '../widgets/categories_builder_widget.dart';
+import '../widgets/news_list_builder.dart';
+import '../widgets/title_widget.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});

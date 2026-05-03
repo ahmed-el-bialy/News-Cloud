@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Widgets/Category_NewsList_Builder.dart';
+import '../widgets/category_news_list_builder.dart';
 
 class GeneralNewsView extends StatelessWidget {
   const GeneralNewsView({super.key});

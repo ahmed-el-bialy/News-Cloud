@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../Models/News_Model.dart';
-import '../Services/News_Services.dart';
-import 'News_List_Widget.dart';
+import '../models/news_model.dart';
+import '../services/news_services.dart';
+import 'news_list_widget.dart';
 
 class NewsListBuilder extends StatefulWidget {
   const NewsListBuilder({super.key});
@@ -18,11 +18,11 @@ class _NewsListBuilderState extends State<NewsListBuilder> {
   void initState() {
     super.initState();
     setState(() {
-      getnews();
+      getNews();
     });
   }
 
-  void getnews() {
+  void getNews() {
     future = NewsServices().getTopNews();
   }
 

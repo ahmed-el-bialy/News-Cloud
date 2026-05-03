@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../Models/News_Model.dart';
-import '../Services/News_Services.dart';
-import 'News_List_Widget.dart';
+import '../models/news_model.dart';
+import '../services/news_services.dart';
+import 'news_list_widget.dart';
 
 class CategoryNewsListBuilder extends StatefulWidget {
-  String category;
-  String country;
+ final  String category;
+  final String country;
 
-  CategoryNewsListBuilder({
+  const CategoryNewsListBuilder({
     super.key,
     required this.category,
     this.country="",
@@ -30,7 +31,7 @@ class _CategoryNewsListBuilderState extends State<CategoryNewsListBuilder> {
     });
   }
 
-  getnews() {
+  void getnews() {
     future = NewsServices().getCategoryNews(
       newsCategory: widget.category,
       country:widget.country,
@@ -47,10 +48,10 @@ class _CategoryNewsListBuilderState extends State<CategoryNewsListBuilder> {
               child: Center(
                 child: Column(
                   children: [
-                    Icon(Icons.new_releases_sharp, size: 25),
+                    Icon(Icons.new_releases_sharp, size: 25.sp),
                     Text(
                       "No News for now ,please try later  ",
-                      style: TextStyle(fontSize: 25),
+                      style: TextStyle(fontSize: 25.sp),
                     ),
                   ],
                 ),

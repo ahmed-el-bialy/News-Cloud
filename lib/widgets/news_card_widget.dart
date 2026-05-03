@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../Models/News_Model.dart';
-import '../Views/News_Web_View.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../models/news_model.dart';
+import '../views/news_web_view.dart';
 
 class NewsCardWidget extends StatelessWidget {
   const NewsCardWidget({super.key, required this.newDetails});
@@ -33,7 +34,7 @@ class NewsCardWidget extends StatelessWidget {
                 Flexible(
                   child: SizedBox(
                     width: double.infinity,
-                    height: 250,
+                    height: 200.h,
                     child: ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(20),
                       child: CachedNetworkImage(
@@ -59,7 +60,7 @@ class NewsCardWidget extends StatelessWidget {
                   ),
                   child: Text(
                     newDetails.headLine,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -75,7 +76,7 @@ class NewsCardWidget extends StatelessWidget {
                     newDetails.subHeadLine!,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 15, color: Colors.grey[600]),
+                    style: TextStyle(fontSize: 13.sp, color: Colors.grey[600]),
                   ),
                 ),
               ],

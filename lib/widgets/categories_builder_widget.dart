@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import '../Models/Category_Model.dart';
-import '../Views/Business_News_View.dart';
-import '../Views/Entertainment_News_View.dart';
-import '../Views/General_News_View.dart';
-import '../Views/Sport_News_View.dart';
-import '../Views/Tech_News_View.dart';
-import 'Category_Card_Widget.dart';
+import '../models/category_model.dart';
+import '../views/business_news_view.dart';
+import '../views/entertainment_news_view.dart';
+import '../views/general_news_view.dart';
+import '../views/sport_news_view.dart';
+import '../views/tech_news_view.dart';
+import 'category_card_widget.dart';
 
 class CategoriesBuilderWidget extends StatelessWidget {
   CategoriesBuilderWidget({super.key});
 
-  List<CategoryModel> categoryList = [
+ final List<CategoryModel> categoryList = [
     CategoryModel(
       imagePath: 'assets/general.avif',
       categoryName: 'General',

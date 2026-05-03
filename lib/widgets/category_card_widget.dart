@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Models/Category_Model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../models/category_model.dart';
 
 class CategoryCardWidget extends StatelessWidget {
   const CategoryCardWidget({super.key, required this.categoryModel});
@@ -26,17 +27,17 @@ class CategoryCardWidget extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          height: MediaQuery.heightOf(context) * .15,
-          width: MediaQuery.widthOf(context) * .65,
+          height: 180.h,
+          width: 200.w,
           child: Text(
             categoryModel.categoryName,
             style: TextStyle(
-              fontSize: 35,
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               shadows: [
                 Shadow(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withValues(alpha: 0.9),
                   offset: const Offset(2, 0),
                   blurRadius: 8,
                 ),

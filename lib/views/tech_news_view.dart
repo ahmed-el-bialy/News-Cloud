@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Widgets/Category_NewsList_Builder.dart';
+import '../widgets/category_news_list_builder.dart';
 
 class TechNewsView extends StatelessWidget {
   const TechNewsView({super.key});

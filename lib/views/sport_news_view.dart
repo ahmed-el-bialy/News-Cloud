@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../Widgets/Category_NewsList_Builder.dart';
+import '../widgets/category_news_list_builder.dart';
 
-class EntertainmentNewsView extends StatelessWidget {
-  const EntertainmentNewsView({super.key});
+class SportNewsView extends StatelessWidget {
+  const SportNewsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white, size: 28),
-        backgroundColor: Color(0xFFD81B60),
+        backgroundColor: Color(0xFF2E7D32),
         title: Text(
-          "Entertainment News",
+          "Sport News",
           style: TextStyle(color: Colors.white, fontSize: 30),
         ),
         centerTitle: true,
       ),
 
-      body:
-
-      CustomScrollView(
+      body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
-          CategoryNewsListBuilder(category: "entertainment")
-
+          CategoryNewsListBuilder(
+            category: "sports",
+            country: "&country=eg,es,sa,gb,fr",
+          ),
         ],
       ),
     );
