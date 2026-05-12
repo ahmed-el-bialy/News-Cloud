@@ -1,0 +1,35 @@
+flutter_native_splash:
+  color: "#000000"
+  icon_background_color: "#000000"
+  #color_dark: "#FFFFFF"
+  # platform-specific color. will override general color if active:
+  #color_android: "#42a5f5"
+  #color_dark_android: "#042a49"
+  #color_ios: "#42a5f5"
+  #color_dark_ios: "#042a49"
+  #color_web: "#42a5f5"
+  #color_dark_web: "#042a49"
+
+  # general background_image for all platform (except android 12+)
+  # if you specify this [required] background_image, then you should comment the
+  # [required] color in previous
+
+  image: assets/images/app_logo.png
+  image_dark: assets/images/app_logo.png
+
+  android_12:
+
+    #color: "#FFFFFF"
+    # color_dark: "#042a49"
+
+    image: assets/images/app_logo.png
+    # image_dark: assets/images/logo/logo-splash2.png
+
+    # center-logo background color
+    icon_background_color: "#000000"
+    icon_background_color_dark: "#000000"
+
+    # branding:
+    # The branding image dimensions must be 800x320 px.
+    #branding:      assets/dart.png
+    #branding_dark: assets/dart_dark.png
