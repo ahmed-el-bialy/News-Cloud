@@ -67,7 +67,9 @@ class NewsCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
+                      fontFamily: "Cairo",
                     ),
+                    textAlign: TextAlign.right,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -81,9 +83,14 @@ class NewsCard extends StatelessWidget {
                   ),
                   child: Text(
                     newDetails.subHeadLine ?? "not exist",
+                    textAlign: TextAlign.right,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 13.sp, color: Colors.grey[600]),
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      color: Colors.grey[600],
+                      fontFamily: "Cairo",
+                    ),
                   ),
                 ),
               ],

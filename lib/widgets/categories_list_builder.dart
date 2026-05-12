@@ -7,27 +7,27 @@ class CategoriesListBuilder extends StatelessWidget {
 
   final List<CategoryModel> categoryList = [
     CategoryModel(
-      imagePath: 'assets/general.avif',
+      imagePath: 'assets/images/general.avif',
       pageName: 'General',
       categories: "other,crime,world",
     ),
     CategoryModel(
-      imagePath: 'assets/technology.jpeg',
+      imagePath: 'assets/images/technology.jpeg',
       pageName: 'Technology',
       categories: "technology",
     ),
     CategoryModel(
-      imagePath: 'assets/entertainment.webp',
+      imagePath: 'assets/images/entertainment.webp',
       pageName: 'Entertainment',
       categories: "entertainment",
     ),
     CategoryModel(
-      imagePath: 'assets/business.avif',
+      imagePath: 'assets/images/business.avif',
       pageName: 'Business',
       categories: 'business',
     ),
     CategoryModel(
-      imagePath: 'assets/sports.avif',
+      imagePath: 'assets/images/sports.avif',
       pageName: 'sports',
       categories: 'sports',
       country: "eg,es,sa,gb,fr",
