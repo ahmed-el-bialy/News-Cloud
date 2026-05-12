@@ -1,19 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../models/news_model.dart';
-import '../services/news_services.dart';
+import 'package:news_cloud/data/repo/repo.dart';
+import 'package:news_cloud/data/services/web_services.dart';
+import '../data/models/news_model.dart';
 import 'news_list_builder.dart';
-import 'sliver_news_card.dart';
 
 class CategoryNewsListBuilder extends StatefulWidget {
   final String category;
-  final String country;
+  final String? country;
 
   const CategoryNewsListBuilder({
     super.key,
     required this.category,
-    this.country = "",
+    this.country,
   });
 
   @override
@@ -27,16 +26,15 @@ class _CategoryNewsListBuilderState extends State<CategoryNewsListBuilder> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      getNews();
-    });
-  }
-
-  void getNews() {
-    future = NewsServices().getCategoryNews(
-      newsCategory: widget.category,
-      country: widget.country,
-    );
+    Dio dio = Dio();
+    WebServices webServices = WebServices(dio);
+    Repo repo = Repo(webServices);
+    future = widget.country == null
+        ? repo.getNewsByCategory(newsCategory: widget.category)
+        : repo.getCountriesNewsByCategory(
+            newsCategory: widget.category,
+            country: widget.country!,
+          );
   }
 
   @override

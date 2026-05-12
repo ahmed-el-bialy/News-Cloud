@@ -1,3 +1,3 @@
 
-final String baseUrl = "https://newsdata.io/api/1";
-final String apiKey = "pub_a88236a36d3f44aabba52075fa0a7602&";
+const   String baseUrl = "https://newsdata.io/api/1/";
+const String myApiKey = "pub_b2e117f80b0b445c92a658e3321dbd3c";

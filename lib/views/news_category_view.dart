@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_cloud/models/category_model.dart';
-
+import '../data/models/category_model.dart';
 import '../widgets/category_news_list.dart';
 
 class NewsCategoryView extends StatelessWidget {
@@ -25,7 +24,7 @@ class NewsCategoryView extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: [
           CategoryNewsListBuilder(
-            category: (model.pageName).toLowerCase(),
+            category: (model.categories).toLowerCase(),
             country: model.country,
           ),
         ],

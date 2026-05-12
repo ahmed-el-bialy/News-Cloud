@@ -1,9 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:news_cloud/data/repo/repo.dart';
 
-import '../models/news_model.dart';
-import '../services/news_services.dart';
+import '../data/models/news_model.dart';
+import '../data/services/web_services.dart';
 import 'news_list_builder.dart';
-
 
 class BreakingNewsList extends StatefulWidget {
   const BreakingNewsList({super.key});
@@ -13,22 +14,20 @@ class BreakingNewsList extends StatefulWidget {
 }
 
 class _BreakingNewsListState extends State<BreakingNewsList> {
-  late Future<List<NewsModel>> future;
+  late Future<List<NewsModel>> newsFuture;
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      getNews();
-    });
-  }
+    final dio = Dio();
+    final webServices = WebServices(dio);
+    final repo = Repo(webServices);
 
-  void getNews() {
-    future = NewsServices().getTopNews();
+    newsFuture = repo.getTopNews();
   }
 
   @override
   Widget build(BuildContext context) {
-    return NewsListBuilder(future: future);
+    return NewsListBuilder(future: newsFuture);
   }
 }

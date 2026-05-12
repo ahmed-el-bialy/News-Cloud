@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/category_model.dart';
+import '../data/models/category_model.dart';
 import 'category_card.dart';
 
 class CategoriesListBuilder extends StatelessWidget {
@@ -9,7 +9,7 @@ class CategoriesListBuilder extends StatelessWidget {
     CategoryModel(
       imagePath: 'assets/general.avif',
       pageName: 'General',
-      categories: "health,other,crime,world,tourism",
+      categories: "other,crime,world",
     ),
     CategoryModel(
       imagePath: 'assets/technology.jpeg',
@@ -30,7 +30,7 @@ class CategoriesListBuilder extends StatelessWidget {
       imagePath: 'assets/sports.avif',
       pageName: 'sports',
       categories: 'sports',
-      country: "&country=eg,es,sa,gb,fr",
+      country: "eg,es,sa,gb,fr",
     ),
   ];
 

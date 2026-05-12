@@ -30,14 +30,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # networking.
   dio: ^5.9.2
+  retrofit_generator: ^10.2.6
+  retrofit: ^4.9.2
+  pretty_dio_logger: ^1.4.0
+
+  # A Flutter plugin that provides a WebView widget backed by the system webview.
   webview_flutter: ^4.13.1
 
-  # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.9
+  # Flutter library to load and cache network images.
   cached_network_image: ^3.4.1
+  # Automatically generate code for converting to and from JSON by annotating Dart classes.
   flutter_screenutil: ^5.9.3
+
+  # Automatically generate code for converting to and from JSON to annotation .
+  json_annotation: ^4.11.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +60,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  json_serializable: ^6.13.2
+  build_runner: ^2.15.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/news_model.dart';
+import '../data/models/news_model.dart';
 import 'sliver_news_card.dart';
 
 class NewsListBuilder extends StatelessWidget {

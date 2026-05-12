@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_cloud/views/news_category_view.dart';
-import '../models/category_model.dart';
+import '../data/models/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key, required this.categoryModel});
