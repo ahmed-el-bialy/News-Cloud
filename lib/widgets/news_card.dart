@@ -38,8 +38,6 @@ class NewsCard extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(20),
                       child: CachedNetworkImage(
-                        placeholder: (context, url) =>
-                            Center(child: CircularProgressIndicator()),
                         imageUrl:
                             newDetails.imageUrl ??
                             "https://imgs.search.brave.com/w4VZNFveOGMTnKbTH0xiATTbiTlgO13s89OLsLPLHE4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzE5LzU2LzM4LzYy/LzM2MF9GXzE5NTYz/ODYyMTlfbGpQSEZL/RUozSHNmY0pjVGJy/SDU4MWZianE3OUtB/akwuanBn",
